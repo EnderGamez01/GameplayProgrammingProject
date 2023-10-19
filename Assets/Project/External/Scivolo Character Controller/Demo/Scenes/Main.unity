@@ -1422,6 +1422,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165864679}
   m_Mesh: {fileID: 1222890667}
+--- !u!1 &197050746 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1012443630669569001, guid: 073c64c3a3359f64585eae20f4f472e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1313890074}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &197050748 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3219603957023205321, guid: 073c64c3a3359f64585eae20f4f472e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1313890074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197050746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e22d3d598c88114dbf60ea0fc261494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &197050753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197050746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50818e2ac6c43a246959bcae286f6e1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputController: {fileID: 1280117094}
 --- !u!43 &224249096
 Mesh:
   m_ObjectHideFlags: 0
@@ -6826,13 +6857,13 @@ MonoBehaviour:
   moveInputEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 197050748}
+        m_TargetAssemblyTypeName: HeroicArcade.CC.Core.AvatarController, RunTime
+        m_MethodName: OnMoveInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6941,7 +6972,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1012443630669569001, guid: 073c64c3a3359f64585eae20f4f472e2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 197050753}
   m_SourcePrefab: {fileID: 100100000, guid: 073c64c3a3359f64585eae20f4f472e2, type: 3}
 --- !u!43 &1325727199
 Mesh:

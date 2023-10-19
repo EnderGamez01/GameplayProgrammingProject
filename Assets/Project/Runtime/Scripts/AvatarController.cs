@@ -2,6 +2,7 @@
 using MenteBacata.ScivoloCharacterController;
 //using MenteBacata.ScivoloCharacterControllerDemo;
 using HeroicArcade.CC.Demo;
+using System.Text.RegularExpressions;
 
 namespace HeroicArcade.CC.Core
 {
@@ -16,6 +17,8 @@ namespace HeroicArcade.CC.Core
         public float rotationSpeed = 720f;
 
         public float gravity = -25f;
+
+        public CharacterCapsule capsule;
 
         public CharacterMover mover;
 
@@ -35,6 +38,10 @@ namespace HeroicArcade.CC.Core
         private float nextUngroundedTime = -1f;
 
         private Transform cameraTransform;
+
+        private Collider[] overlaps = new Collider[5];
+
+        private int overlapCount;
 
         private MoveContact[] moveContacts = CharacterMover.NewMoveContactArray;
 
@@ -62,6 +69,8 @@ namespace HeroicArcade.CC.Core
 
             Vector3 velocity = moveSpeed * movementInput;
 
+            HandleOverlaps();
+
             bool groundDetected = DetectGroundAndCheckIfGrounded(out bool isGrounded, out GroundInfo groundInfo);
 
             SetGroundedIndicatorColor(isGrounded);
@@ -77,7 +86,7 @@ namespace HeroicArcade.CC.Core
 
             if (isGrounded)
             {
-                //mover.isInWalkMode = true;
+                mover.mode = CharacterMover.Mode.Walk;
                 verticalSpeed = 0f;
 
                 if (groundDetected)
@@ -85,7 +94,7 @@ namespace HeroicArcade.CC.Core
             }
             else
             {
-                //mover.isInWalkMode = false;
+                mover.mode = CharacterMover.Mode.SimpleSlide;
 
                 BounceDownIfTouchedCeiling();
 
@@ -98,7 +107,8 @@ namespace HeroicArcade.CC.Core
             }
 
             RotateTowards(velocity);
-            //mover.Move(velocity * deltaTime, moveContacts, out contactCount);
+            //mover.Move(velocity * deltaTime, moveContacts, out contactCount); //FIXME
+            mover.Move(velocity * deltaTime, groundDetected, groundInfo, overlapCount, overlaps, moveContacts, out contactCount);
         }
 
         private void LateUpdate()
@@ -107,22 +117,34 @@ namespace HeroicArcade.CC.Core
                 ApplyPlatformMovement(movingPlatform);
         }
 
-        //private Vector3 GetMovementInput()
-        //{
-        //    float x = 0; // Input.GetAxis("Horizontal");
-        //    float y = 0; // Input.GetAxis("Vertical");
-        //    Vector3 forward = Vector3.ProjectOnPlane(cameraTransform.forward, transform.up).normalized;
-        //    Vector3 right = Vector3.Cross(transform.up, forward);
-        //    return x * right + y * forward;
-        //}
+        private Vector3 GetMovementInput()
+        {
+            float x = currentMovement.x; // 0; // Input.GetAxis("Horizontal");
+            float y = currentMovement.z; //0; // Input.GetAxis("Vertical");
+            Vector3 forward = Vector3.ProjectOnPlane(cameraTransform.forward, transform.up).normalized;
+            Vector3 right = Vector3.Cross(transform.up, forward);
+            return x * right + y * forward;
+        }
 
         Vector3 projectedCameraForward;
         Quaternion rotationToCamera;
-        private Vector3 GetMovementInput()
+        //private Vector3 GetMovementInput()
+        //{
+        //    projectedCameraForward = Vector3.ProjectOnPlane(cameraTransform.forward, transform.up);
+        //    rotationToCamera = Quaternion.LookRotation(projectedCameraForward, transform.up);
+        //    return rotationToCamera * (currentMovement.x * Vector3.right + currentMovement.z * Vector3.forward);
+        //}
+
+        private void HandleOverlaps()
         {
-            projectedCameraForward = Vector3.ProjectOnPlane(cameraTransform.forward, transform.up);
-            rotationToCamera = Quaternion.LookRotation(projectedCameraForward, transform.up);
-            return rotationToCamera * (currentMovement.x * Vector3.right + currentMovement.z * Vector3.forward);
+            if (capsule.TryResolveOverlap())
+            {
+                overlapCount = 0;
+            }
+            else
+            {
+                overlapCount = capsule.CollectOverlaps(overlaps);
+            }
         }
 
         private bool DetectGroundAndCheckIfGrounded(out bool isGrounded, out GroundInfo groundInfo)
