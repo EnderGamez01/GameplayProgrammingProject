@@ -6875,6 +6875,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1012443630679091663, guid: 073c64c3a3359f64585eae20f4f472e2,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: d3edc1e1711813a4f98fa347a8af9d0a, type: 3}
+    - target: {fileID: 1012443630679091663, guid: 073c64c3a3359f64585eae20f4f472e2,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 80d618dad7e3a6a4785283a0abe9152f, type: 2}
     - target: {fileID: 3322354133784579684, guid: 073c64c3a3359f64585eae20f4f472e2,
         type: 3}
       propertyPath: m_LocalRotation.z
