@@ -67,8 +67,13 @@ namespace HeroicArcade.CC.Core
             float deltaTime = Time.deltaTime;
             Vector3 movementInput = GetMovementInput();
 
+            Character.velocityXZ += Character.MoveAcceleration * deltaTime;
+            if (Character.velocityXZ > Character.CurrentMaxMoveSpeed)
+                Character.velocityXZ = Character.CurrentMaxMoveSpeed;
+
             Vector3 velocity = moveSpeed * movementInput;
 
+            Character.velocity = Character.velocityXZ * movementInput;
             HandleOverlaps();
 
             bool groundDetected = DetectGroundAndCheckIfGrounded(out bool isGrounded, out GroundInfo groundInfo);
@@ -79,6 +84,7 @@ namespace HeroicArcade.CC.Core
 
             if (isGrounded && Character.InputController.IsJumpPressed)
             {
+                Character.Animator.SetBool("IsJumping", true);
                 verticalSpeed = jumpSpeed;
                 nextUngroundedTime = -1f;
                 isGrounded = false;
@@ -86,6 +92,7 @@ namespace HeroicArcade.CC.Core
 
             if (isGrounded)
             {
+                Character.Animator.SetBool("IsJumping", false);
                 mover.mode = CharacterMover.Mode.Walk;
                 verticalSpeed = 0f;
 
@@ -106,9 +113,31 @@ namespace HeroicArcade.CC.Core
                 velocity += verticalSpeed * transform.up;
             }
 
+            if (isGrounded)
+            {
+                if (movementInput.sqrMagnitude < 1E-06f)
+                {
+                    Character.velocityXZ = 0f;
+                    //Character.Animator.SetBool("IsSprintPressed", false);
+                }
+
+                Character.Animator.SetFloat("MoveSpeed",
+                    new Vector3(Character.velocity.x, 0, Character.velocity.z).magnitude / Character.CurrentMaxMoveSpeed);
+
+                if (Character.velocityXZ >= 1E-06f)
+                {
+                    //Character.Animator.SetBool("IsSprintPressed", Character.InputController.IsSprintPressed);
+                }
+
+                Character.CurrentMaxMoveSpeed = Character.CurrentMaxWalkSpeed;
+            }
+
             RotateTowards(velocity);
-            //mover.Move(velocity * deltaTime, moveContacts, out contactCount); //FIXME
             mover.Move(velocity * deltaTime, groundDetected, groundInfo, overlapCount, overlaps, moveContacts, out contactCount);
+
+            Character.CurrentMaxMoveSpeed = 3;
+            Character.Animator.SetFloat("MoveSpeed",
+                new Vector3(Character.velocity.x, 0, Character.velocity.z).magnitude / Character.CurrentMaxMoveSpeed);
         }
 
         private void LateUpdate()
