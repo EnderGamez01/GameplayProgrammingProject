@@ -24,6 +24,9 @@ namespace HeroicArcade.CC.Core
 
             controls.Gameplay.Jump.started += OnJump;
             controls.Gameplay.Jump.canceled += OnJump;
+
+            controls.Gameplay.Sprint.started += OnSprint; //Added
+            controls.Gameplay.Sprint.canceled += OnSprint; //Added
         }
 
         private Vector2 moveInput;
@@ -39,6 +42,12 @@ namespace HeroicArcade.CC.Core
         {
             IsJumpPressed = context.ReadValueAsButton();
         }
+
+        [HideInInspector] public bool IsSprintPressed; //added
+        private void OnSprint(InputAction.CallbackContext context) //added
+        {
+            IsSprintPressed = context.ReadValueAsButton();
+        }                                                           //added
 
         private void OnEnable()
         {

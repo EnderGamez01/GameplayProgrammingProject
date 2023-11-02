@@ -14,6 +14,8 @@ namespace HeroicArcade.CC.Core
 
         public float jumpSpeed = 8f;
 
+        public float sprintSpeed = 10f; //added
+
         public float rotationSpeed = 720f;
 
         public float gravity = -25f;
@@ -82,6 +84,18 @@ namespace HeroicArcade.CC.Core
 
             isOnMovingPlatform = false;
 
+            if (Character.InputController.IsSprintPressed)
+            {
+                Character.Animator.SetBool("IsSprinting", true);
+                mover.mode = CharacterMover.Mode.Walk;
+                verticalSpeed = 0f;
+            }
+            if (!Character.InputController.IsSprintPressed)
+            {
+                Character.Animator.SetBool("IsSprinting", false);
+
+            }
+
             if (isGrounded && Character.InputController.IsJumpPressed)
             {
                 Character.Animator.SetBool("IsJumping", true);
@@ -134,6 +148,9 @@ namespace HeroicArcade.CC.Core
 
             RotateTowards(velocity);
             mover.Move(velocity * deltaTime, groundDetected, groundInfo, overlapCount, overlaps, moveContacts, out contactCount);
+
+            Character.CurrentMaxMoveSpeed = Character.InputController.IsSprintPressed ? 
+                Character.CurrentMaxSprintSpeed : Character.CurrentMaxSprintSpeed; //added
 
             Character.CurrentMaxMoveSpeed = 3;
             Character.Animator.SetFloat("MoveSpeed",

@@ -830,6 +830,7 @@ MonoBehaviour:
         m_CallState: 2
   IsMovePressed: 0
   IsJumpPressed: 0
+  IsSprintPressed: 0
 --- !u!1 &7449934933929450801
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,8 +1481,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e22d3d598c88114dbf60ea0fc261494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpSpeed: 8
+  moveSpeed: 3
+  jumpSpeed: 10
+  sprintSpeed: 10
   rotationSpeed: 720
   gravity: -25
   capsule: {fileID: 8905269871240630557}
@@ -1506,6 +1508,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   velocityXZ: 0
   maxWalkSpeed: 6
+  maxSprintSpeed: 0
   moveAcceleration: 8
   mover: {fileID: 7827285734688753285}
 --- !u!4 &1012443630669725895 stripped
