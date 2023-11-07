@@ -4185,6 +4185,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1906169186399115261, guid: 073c64c3a3359f64585eae20f4f472e2,
+        type: 3}
+      propertyPath: m_YAxisRecentering.m_WaitTime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906169186399115261, guid: 073c64c3a3359f64585eae20f4f472e2,
+        type: 3}
+      propertyPath: m_YAxisRecentering.m_RecenteringTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3939384939857701122, guid: 073c64c3a3359f64585eae20f4f472e2,
         type: 3}
       propertyPath: m_Name
