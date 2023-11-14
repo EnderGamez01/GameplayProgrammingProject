@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -6,11 +7,16 @@ namespace HeroicArcade.CC.Core
 {
     [System.Serializable] public class MoveInputEvent : UnityEvent<Vector2> { }
     [System.Serializable] public class CameraRecenterXEvent : UnityEvent<bool> { }
+    [System.Serializable] public class CameraAimEvent : UnityEvent<bool> { }
+    [System.Serializable] public class AimSwapEvent : UnityEvent { }
+
 
     public sealed class InputController : MonoBehaviour
     {
         [SerializeField] MoveInputEvent moveInputEvent;
         [SerializeField] CameraRecenterXEvent cameraRecenterXEvent;
+        [SerializeField] CameraAimEvent cameraAimEvent;
+        [SerializeField] AimSwapEvent aimSwapEvent;
 
         Controls controls;
         private void Awake()
@@ -26,6 +32,11 @@ namespace HeroicArcade.CC.Core
 
             controls.Gameplay.CameraRecenterX.started += OnRecenterX;
             controls.Gameplay.CameraRecenterX.canceled += OnRecenterX;
+
+            controls.Gameplay.Aim.started += OnAim;
+            controls.Gameplay.Aim.canceled += OnAim;
+
+            controls.Gameplay.AimSwap.started += OnAimSwap;
 
             controls.Gameplay.Sprint.started += OnSprint; //Added
             controls.Gameplay.Sprint.canceled += OnSprint; //Added
@@ -63,6 +74,17 @@ namespace HeroicArcade.CC.Core
         private void OnRecenterX(InputAction.CallbackContext context)
         {
             cameraRecenterXEvent.Invoke(context.ReadValueAsButton());
+        }
+        [HideInInspector] public bool IsAimingPressed;
+        private void OnAim(InputAction.CallbackContext context)
+        {
+            IsAimingPressed = context.ReadValueAsButton();
+            cameraAimEvent.Invoke(IsAimingPressed);
+        }
+
+        private void OnAimSwap(InputAction.CallbackContext context)
+        {
+            aimSwapEvent.Invoke();
         }
     }
 }
