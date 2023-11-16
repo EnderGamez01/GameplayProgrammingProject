@@ -89,6 +89,9 @@ namespace HeroicArcade.CC.Core
 
         private void Update()
         {
+            Character.Animator.SetBool("IsAimPressed", Character.InputController.IsAimPressed);
+            Character.Animator.SetBool("IsShootPressed", Character.InputController.IsShootPressed);
+            Character.Animator.SetBool("IsSprintPressed", Character.InputController.IsSprintPressed);
             float deltaTime = Time.deltaTime;
             Vector3 movementInput = GetMovementInput();
 
@@ -389,7 +392,7 @@ namespace HeroicArcade.CC.Core
             {
                 aimCameraOffset = AimCameraOffset.Left;
             }
-            OnCameraAim(Character.InputController.IsAimingPressed);
+            OnCameraAim(Character.InputController.IsAimPressed);
         }
     }
 }

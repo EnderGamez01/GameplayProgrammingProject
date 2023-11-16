@@ -30,6 +30,10 @@ namespace HeroicArcade.CC.Core
             controls.Gameplay.Jump.started += OnJump;
             controls.Gameplay.Jump.canceled += OnJump;
 
+            controls.Gameplay.Shoot.started += OnShoot;
+            controls.Gameplay.Shoot.performed += OnShoot;
+            controls.Gameplay.Shoot.canceled += OnShoot;
+
             controls.Gameplay.CameraRecenterX.started += OnRecenterX;
             controls.Gameplay.CameraRecenterX.canceled += OnRecenterX;
 
@@ -71,15 +75,23 @@ namespace HeroicArcade.CC.Core
         {
             controls.Gameplay.Disable();
         }
+
+        [HideInInspector] public bool IsShootPressed;
+        private void OnShoot(InputAction.CallbackContext context)
+        {
+            IsShootPressed = context.ReadValueAsButton();
+        }
+
         private void OnRecenterX(InputAction.CallbackContext context)
         {
             cameraRecenterXEvent.Invoke(context.ReadValueAsButton());
         }
-        [HideInInspector] public bool IsAimingPressed;
+
+        [HideInInspector] public bool IsAimPressed;
         private void OnAim(InputAction.CallbackContext context)
         {
-            IsAimingPressed = context.ReadValueAsButton();
-            cameraAimEvent.Invoke(IsAimingPressed);
+            IsAimPressed = context.ReadValueAsButton();
+            cameraAimEvent.Invoke(IsAimPressed);
         }
 
         private void OnAimSwap(InputAction.CallbackContext context)
