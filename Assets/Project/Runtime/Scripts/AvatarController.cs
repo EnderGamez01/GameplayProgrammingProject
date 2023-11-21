@@ -105,26 +105,33 @@ namespace HeroicArcade.CC.Core
             HandleOverlaps();
 
             bool groundDetected = DetectGroundAndCheckIfGrounded(out bool isGrounded, out GroundInfo groundInfo);
-
+            Character.Animator.SetBool("IsJumpPressed", !isGrounded);
             SetGroundedIndicatorColor(isGrounded);
 
             isOnMovingPlatform = false;
 
+            if (isGrounded && Character.InputController.IsJumpPressed)
+            {
+                verticalSpeed = Character.JumpSpeed;
+                nextUngroundedTime = -1f;
+                isGrounded = false;
+            }
+
             if (Character.InputController.IsSprintPressed)
             {
-                Character.Animator.SetBool("IsSprinting", true);
+                Character.Animator.SetBool("IsSprintPressed", true);
                 mover.mode = CharacterMover.Mode.Walk;
                 verticalSpeed = 0f;
             }
             if (!Character.InputController.IsSprintPressed)
             {
-                Character.Animator.SetBool("IsSprinting", false);
+                Character.Animator.SetBool("IsSprintPressed", false);
 
             }
 
             if (isGrounded && Character.InputController.IsJumpPressed)
             {
-                Character.Animator.SetBool("IsJumping", true);
+                Character.Animator.SetBool("IsJumpPressed", true);
                 verticalSpeed = jumpSpeed;
                 nextUngroundedTime = -1f;
                 isGrounded = false;
@@ -132,7 +139,7 @@ namespace HeroicArcade.CC.Core
 
             if (isGrounded)
             {
-                Character.Animator.SetBool("IsJumping", false);
+                Character.Animator.SetBool("IsJumpPressed", false);
                 mover.mode = CharacterMover.Mode.Walk;
                 verticalSpeed = 0f;
 
