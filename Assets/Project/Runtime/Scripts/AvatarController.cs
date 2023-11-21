@@ -24,7 +24,7 @@ namespace HeroicArcade.CC.Core
         public AimCameraOffset aimCameraOffset = AimCameraOffset.Left;
         public float moveSpeed = 5f;
 
-        public float jumpSpeed = 8f;
+        //public float jumpSpeed = 8f;
 
         public float sprintSpeed = 10f; //added
 
@@ -112,6 +112,7 @@ namespace HeroicArcade.CC.Core
 
             if (isGrounded && Character.InputController.IsJumpPressed)
             {
+                Character.Animator.SetBool("IsJumpPressed", true);
                 verticalSpeed = Character.JumpSpeed;
                 nextUngroundedTime = -1f;
                 isGrounded = false;
@@ -127,14 +128,6 @@ namespace HeroicArcade.CC.Core
             {
                 Character.Animator.SetBool("IsSprintPressed", false);
 
-            }
-
-            if (isGrounded && Character.InputController.IsJumpPressed)
-            {
-                Character.Animator.SetBool("IsJumpPressed", true);
-                verticalSpeed = jumpSpeed;
-                nextUngroundedTime = -1f;
-                isGrounded = false;
             }
 
             if (isGrounded)
