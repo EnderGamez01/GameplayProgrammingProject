@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186308593897436020}
-  m_LocalRotation: {x: 0.041153785, y: 0.000000017191805, z: -7.081078e-10, w: 0.99915284}
+  m_LocalRotation: {x: 0.041153785, y: -0.000000017191804, z: 7.081077e-10, w: 0.99915284}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -389,7 +389,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047638805130806090}
-  m_LocalRotation: {x: 0.041153785, y: -0.000000017191804, z: 7.081077e-10, w: 0.99915284}
+  m_LocalRotation: {x: 0.041153785, y: 0.000000017191805, z: -7.081078e-10, w: 0.99915284}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1951,7 +1951,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5971440368014754383}
-  m_LocalRotation: {x: 0.059273098, y: 0.0000000021470163, z: -1.2748444e-10, w: 0.99824184}
+  m_LocalRotation: {x: 0.059273098, y: -0.0000000021470161, z: 1.2748443e-10, w: 0.99824184}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3382,6 +3382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputController: {fileID: 9160776088609221379}
+  autoAiming: {fileID: 933647363327724177}
   animator: {fileID: 1012443630679091663}
   CurrentMaxMoveSpeed: 0
   velocity: {x: 0, y: 0, z: 0}
@@ -3987,6 +3988,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ef47b3811d6a64e9e5b848e73f7880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponMaxEnergy:
+    _useConstant: 0
+    _constantValue: 0
+    _variable: {fileID: 11400000, guid: f04dd3d254bf5ce40b11297e8ea1369b, type: 2}
   weaponCurrentEnergy:
     _useConstant: 0
     _constantValue: 0

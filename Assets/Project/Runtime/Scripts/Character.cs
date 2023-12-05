@@ -8,6 +8,9 @@ namespace HeroicArcade.CC.Core
         [SerializeField] InputController inputController;
         public InputController InputController { get => inputController; }
 
+        [SerializeField] AutoAiming autoAiming;
+        public AutoAiming AutoAiming { get => autoAiming; }
+
         [SerializeField] Animator animator;
         public Animator Animator { get => animator; }
 
