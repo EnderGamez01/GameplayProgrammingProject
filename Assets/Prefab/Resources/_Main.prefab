@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186308593897436020}
-  m_LocalRotation: {x: 0.041153785, y: -0.000000017191804, z: 7.081077e-10, w: 0.99915284}
+  m_LocalRotation: {x: 0.041153785, y: 0.000000017191805, z: -7.081078e-10, w: 0.99915284}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -755,7 +755,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2482528793411657170}
-  m_LocalRotation: {x: 0.059273098, y: -0.0000000021470161, z: 1.2748443e-10, w: 0.99824184}
+  m_LocalRotation: {x: 0.059273098, y: 0.0000000021470163, z: -1.2748444e-10, w: 0.99824184}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1951,7 +1951,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5971440368014754383}
-  m_LocalRotation: {x: 0.059273098, y: -0.0000000021470161, z: 1.2748443e-10, w: 0.99824184}
+  m_LocalRotation: {x: 0.059273098, y: 0.0000000021470163, z: -1.2748444e-10, w: 0.99824184}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3876,7 +3876,27 @@ PrefabInstance:
       propertyPath: moveWithTransform
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5911292482754745791, guid: a30fc97384659d545b4084c9e68c4071,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.72890705
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911292482754745791, guid: a30fc97384659d545b4084c9e68c4071,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.72890705
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911292482754745791, guid: a30fc97384659d545b4084c9e68c4071,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.7924528
+      objectReference: {fileID: 0}
     - target: {fileID: 5911332484933287905, guid: a30fc97384659d545b4084c9e68c4071,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911929824015773221, guid: a30fc97384659d545b4084c9e68c4071,
         type: 3}
       propertyPath: moveWithTransform
       value: 0
@@ -3894,6 +3914,12 @@ PrefabInstance:
 --- !u!4 &115546994319202923 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5820562882979675523, guid: a30fc97384659d545b4084c9e68c4071,
+    type: 3}
+  m_PrefabInstance: {fileID: 5862642709076977640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &240712375704897997 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5911929824015773221, guid: a30fc97384659d545b4084c9e68c4071,
     type: 3}
   m_PrefabInstance: {fileID: 5862642709076977640}
   m_PrefabAsset: {fileID: 0}
@@ -4008,8 +4034,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 3660608230961452725}
   bulletTracer: {fileID: 6424304021368538184, guid: 72176c6974666354c91ac6d66f6e210a,
     type: 3}
-  hitEffect: {fileID: 5911929824015773221, guid: a30fc97384659d545b4084c9e68c4071,
-    type: 3}
+  hitEffect: {fileID: 240712375704897997}
   hitPoint: {fileID: 9054833433983077214}
 --- !u!4 &7277160319550456410 stripped
 Transform:
